@@ -1,5 +1,6 @@
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
+import List from "./models/List";
 import * as searchView from "./views/searchView"; //import all functions
 import * as recipeView from "./views/recipeView";
 import { elements, renderLoader, clearLoader } from "./views/base";
@@ -80,7 +81,7 @@ const controleRecipe = async () => {
     // get recipe data and parse ingredients
     try {
       await state.recipe.getRecipe();
-      console.log(state.recipe.ingredients, "??");
+      //console.log(state.recipe.ingredients, "??");
       state.recipe.parseIngredients();
 
       // calc servings and time
@@ -102,3 +103,20 @@ const controleRecipe = async () => {
 ["hashchange", "load"].forEach((event) =>
   window.addEventListener(event, controleRecipe)
 );
+// handeling recipe button clicks
+elements.recipe.addEventListener("click", (e) => {
+  if (e.target.matches(".btn-decrease, .btn-decrease *")) {
+    // decrease button is clicked
+    if (state.recipe.servings > 1) {
+      state.recipe.updateServings("dec");
+      recipeView.undateServingsIngredients(state.recipe);
+    }
+  } else if (e.target.matches(".btn-increase, .btn-increase *")) {
+    // increase button is clicked
+    state.recipe.updateServings("inc");
+    recipeView.undateServingsIngredients(state.recipe);
+  }
+  //console.log(state.recipe);
+});
+
+window.l = new List();
