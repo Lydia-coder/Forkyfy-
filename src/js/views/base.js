@@ -4,15 +4,16 @@ export const elements = {
   searchResult: document.querySelector(".results"),
   searchResultList: document.querySelector(".results__list"),
   searchResultPages: document.querySelector(".results__pages"),
-  recipe: document.querySelector(".recipe")
+  recipe: document.querySelector(".recipe"),
+  shopping: document.querySelector(".shopping__list"),
 };
 // object containing all elements from dom
 
 export const elementsStrings = {
-  loader: "loader"
+  loader: "loader",
 };
 
-export const renderLoader = parent => {
+export const renderLoader = (parent) => {
   const loader = `
     <div class=${elementsStrings.loader}> 
     <svg> 
