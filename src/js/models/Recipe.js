@@ -23,7 +23,7 @@ export default class Recipe {
   calcTime() {
     // assuming that we need 15 min foreach 3 ingredients
     const numIng = this.ingredients.length;
-    const periods = Math.ceil(numIng / 3);
+    const periods = Math.ceil(numIng / 3); // round up to highest integer
     this.time = periods * 15;
   }
 
