@@ -54,9 +54,11 @@ elements.searchForm.addEventListener("submit", (e) => {
 // });
 
 elements.searchResultPages.addEventListener("click", (e) => {
-  const btn = e.target.closest(".btn-inline");
+  const btn = e.target.closest(".btn-inline"); // traverses the Element and its parents (heading toward the document root) 
+  //until it finds a node that matches the provided selector string. Will return itself or the matching ancestor. If no such 
+  //element exists, it returns null 
   if (btn) {
-    const goToPage = parseInt(btn.dataset.goto, 10);
+    const goToPage = parseInt(btn.dataset.goto, 10);// convert to interger
     searchView.clearResults();
     searchView.renderResults(state.search.result, goToPage);
   }
