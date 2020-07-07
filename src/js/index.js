@@ -78,14 +78,14 @@ const controleRecipe = async () => {
     if (state.search) searchView.highlightSelected(id);
 
     // create new recipe object
-    state.recipe = new Recipe(id);
+    state.recipe = new Recipe(id); // object inherits getRecipe methode from it's prototype
 
     //TESTING
     // window.r = state.recipe;
 
     // get recipe data and parse ingredients
     try {
-      await state.recipe.getRecipe();
+      await state.recipe.getRecipe();// 
       //console.log(state.recipe.ingredients, "??");
       state.recipe.parseIngredients();
 
