@@ -58,18 +58,19 @@ export default class Recipe {
       let ingredient = el.toLowerCase();
       unitsLong.forEach((unit, i) => {
         ingredient = ingredient.replace(unit, unitsShort[i]);
+        // replace the unitLong with the element in the arrat with same index of the element unitShort array
       });
 
       // 2) Remove parentheses
-      ingredient = ingredient.replace(/ *\([^)]*\) */g, " ");
-
+      ingredient = ingredient.replace(/ *\([^)]*\) */g, " "); 
+      // use regular expression
       // 3) Parse ingredients into count, unit and ingredient
-      const arrIng = ingredient.split(" ");
-      const unitIndex = arrIng.findIndex((el2) => units.includes(el2));
+      const arrIng = ingredient.split(" ");// turns it into an array
+      const unitIndex = arrIng.findIndex((el2) => units.includes(el2));// looks in unitShort array if unit is there and in which index of array
 
       let objIng;
       if (unitIndex > -1) {
-        // There is a unit
+        // There is a unit if it wasn't it would return -1
         // Ex. 4 1/2 cups, arrCount is [4, 1/2] --> eval("4+1/2") --> 4.5
         // Ex. 4 cups, arrCount is [4]
         const arrCount = arrIng.slice(0, unitIndex);
@@ -78,7 +79,7 @@ export default class Recipe {
         if (arrCount.length === 1) {
           count = eval(arrIng[0].replace("-", "+"));
         } else {
-          count = eval(arrIng.slice(0, unitIndex).join("+"));
+          count = eval(arrIng.slice(0, unitIndex).join("+")); 
         }
 
         objIng = {
@@ -91,7 +92,7 @@ export default class Recipe {
         objIng = {
           count: parseInt(arrIng[0], 10),
           unit: "",
-          ingredient: arrIng.slice(1).join(" "),
+          ingredient: arrIng.slice(1).join(" "), // enite array exept first element and turn it into string
         };
       } else if (unitIndex === -1) {
         // There is NO unit and NO number in 1st position
