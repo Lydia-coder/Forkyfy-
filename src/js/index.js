@@ -67,7 +67,7 @@ elements.searchResultPages.addEventListener("click", (e) => {
 /** RECIPE controller /#47746z*/
 const controleRecipe = async () => {
   //get id from url
-  const id = window.location.hash.replace("#", "");
+  const id = window.location.hash.replace("#", ""); //w.location is enitire url and we replace # with nothing so onlyy the id shows in url
   console.log(id);
 
   if (id) {
@@ -79,13 +79,13 @@ const controleRecipe = async () => {
 
     // create new recipe object
     state.recipe = new Recipe(id); // object inherits getRecipe methode from it's prototype
-
+   // put recipe in state
     //TESTING
     // window.r = state.recipe;
 
     // get recipe data and parse ingredients
     try {
-      await state.recipe.getRecipe();// 
+      await state.recipe.getRecipe();// get recipe from the sever
       //console.log(state.recipe.ingredients, "??");
       state.recipe.parseIngredients();
 
