@@ -31,7 +31,7 @@ export const highlightSelected = (id) => {
  * acc: 18/ acc + cur.length = 24 / newTitle = ["pasta, with, tomato"]
  */
 export const litmitRecipeTitle = (title, limit = 17) => {
-  const newTitle = [];
+  const newTitle = []; // adding to array isnt really mutating the array, that is why here we can use const 
   if (title.length > limit) {
     title.split(" ").reduce((acc, cur) => {
       if (acc + cur.length <= limit) {
